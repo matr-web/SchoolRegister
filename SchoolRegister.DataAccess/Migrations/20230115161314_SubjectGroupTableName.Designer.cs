@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolRegister.DataAccess;
 
@@ -11,9 +12,11 @@ using SchoolRegister.DataAccess;
 namespace SchoolRegister.DataAccess.Migrations
 {
     [DbContext(typeof(SchoolRegisterContext))]
-    partial class SchoolRegisterContextModelSnapshot : ModelSnapshot
+    [Migration("20230115161314_SubjectGroupTableName")]
+    partial class SubjectGroupTableName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
