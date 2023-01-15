@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolRegister.DataAcces.Configuration;
-using SchoolRegister.Entities;
-using SchoolSystem.DataAcces.Configuration;
 
 namespace SchoolRegister.DataAccess;
 
