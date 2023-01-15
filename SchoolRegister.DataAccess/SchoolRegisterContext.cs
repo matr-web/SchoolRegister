@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SchoolRegister.DataAcces.Configuration;
 using SchoolRegister.Entities;
+using SchoolSystem.DataAcces.Configuration;
 
 namespace SchoolRegister.DataAccess;
 
@@ -20,6 +22,14 @@ public class SchoolRegisterContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfiguration(new GradeConfiguration());
+        modelBuilder.ApplyConfiguration(new GroupConfiguration());
+        modelBuilder.ApplyConfiguration(new RoleConfiguration());
+        modelBuilder.ApplyConfiguration(new StudentConfiguration());
+        modelBuilder.ApplyConfiguration(new SubjectConfiguration());
+        modelBuilder.ApplyConfiguration(new TeacherConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 }
 
