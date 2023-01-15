@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SchoolRegister.DataAccess\SchoolRegister.DataAccess.csproj" />
+    <ProjectReference Include="..\SchoolRegister.Utility\SchoolRegister.Utility.csproj" />
   </ItemGroup>
 
 </Project>

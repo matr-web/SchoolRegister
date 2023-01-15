@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolRegister.DataAccess;
+using SchoolRegister.Utility.SeedData;
+using SchoolSystem.Utility.SeedData;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+#region SeedData
+using var scope = app.Services.CreateScope();
+var dbContext = scope.ServiceProvider.GetService<SchoolRegisterContext>();
+SeedGroups.GroupsSeed(dbContext);
+SeedUsers.RolesSeed(dbContext);
+SeedUsers.UsersSeed(dbContext);
+SeedSubjects.SubjectsSeed(dbContext);
+SeedGrades.GradesSeed(dbContext);
+#endregion
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

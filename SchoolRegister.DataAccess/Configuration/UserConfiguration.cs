@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SchoolRegister.Entities;
 
-namespace SchoolSystem.DataAcces.Configuration;
+namespace SchoolRegister.DataAcces.Configuration;
 
 public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
 {

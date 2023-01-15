@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolRegister.Entities;
 
-public enum GradeValueEntity
+public enum GradeValue
 {
     A_Excellent,
     B_VeryGood,
