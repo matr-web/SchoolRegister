@@ -1,6 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using SchoolRegister.DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// Add DbContext.
+builder.Services.AddDbContext<SchoolRegisterContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
