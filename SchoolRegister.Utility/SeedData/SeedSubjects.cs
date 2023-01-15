@@ -1,8 +1,7 @@
 ﻿using SchoolRegister.DataAccess;
 using SchoolRegister.Entities;
-using SchoolSystem.DataAcces;
 
-namespace SchoolSystem.Utility.SeedData;
+namespace SchoolRegister.Utility.SeedData;
 
 public class SeedSubjects
 {
