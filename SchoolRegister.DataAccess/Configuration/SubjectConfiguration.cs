@@ -18,7 +18,7 @@ public class SubjectConfiguration : IEntityTypeConfiguration<SubjectEntity>
             "SubjectGroup",
             x => x.HasOne<GroupEntity>().WithMany().OnDelete(DeleteBehavior.ClientCascade),
             x => x.HasOne<SubjectEntity>().WithMany().OnDelete(DeleteBehavior.ClientCascade) 
-        );
+        ).ToTable("SubjectGroup");
 
         // Subject/Grades configuration.
         builder.HasMany(s => s.Grades)

@@ -6,7 +6,7 @@ public class GradeEntity
 
     public DateTime DateOfIssue { get; set; }
 
-    public virtual GradeValueEntity GradeValue { get; set; }
+    public virtual GradeValue GradeValue { get; set; }
 
     public Guid StudentId { get; set; }
 
