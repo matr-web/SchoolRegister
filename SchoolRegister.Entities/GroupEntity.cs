@@ -8,5 +8,5 @@ public class GroupEntity
 
     public virtual ICollection<StudentEntity> Students { get; set; }
 
-    public virtual ICollection<Subject> Subjects { get; set; }
+    public virtual ICollection<SubjectEntity> Subjects { get; set; }
 }

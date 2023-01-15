@@ -2,7 +2,7 @@
 
 public class TeacherEntity : UserEntity
 {
-    public virtual ICollection<Subject> Subjects { get; set; }
+    public virtual ICollection<SubjectEntity> Subjects { get; set; }
 
     public string Title { get; set; }
 

@@ -14,5 +14,5 @@ public class GradeEntity
 
     public int SubjectId { get; set; }
 
-    public virtual Subject Subject { get; set; }
+    public virtual SubjectEntity Subject { get; set; }
 }
