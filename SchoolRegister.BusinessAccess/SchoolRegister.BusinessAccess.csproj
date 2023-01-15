@@ -3,7 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <!--<Nullable>enable</Nullable>-->
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SchoolRegister.DataAccess\SchoolRegister.DataAccess.csproj" />
+    <ProjectReference Include="..\SchoolRegister.Models\SchoolRegister.Models.csproj" />
+  </ItemGroup>
 
 </Project>

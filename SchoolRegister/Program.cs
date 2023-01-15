@@ -1,4 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using SchoolRegister.BusinessAccess.Interfaces;
+using SchoolRegister.BusinessAccess.Services;
+using SchoolRegister.DataAcces.Repository;
+using SchoolRegister.DataAcces.Repository.IRepository;
 using SchoolRegister.DataAccess;
 using SchoolRegister.Utility.SeedData;
 using SchoolSystem.Utility.SeedData;
@@ -15,6 +19,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Register UnitOfWork for repositories.
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Register Services.
+builder.Services.AddScoped<IGradeService, GradeService>();
+builder.Services.AddScoped<IGroupService, GroupService>();
+builder.Services.AddScoped<ISubjectService, SubjectService>();
 
 var app = builder.Build();
 
