@@ -45,7 +45,7 @@ public class GradeService : IGradeService
         {
             DateOfIssue = DateTime.Now,
             GradeValue = createGradeDto.GradeValue,
-            StudentId = createGradeDto.StudentId,
+            UserId = createGradeDto.StudentId,
             SubjectId = createGradeDto.SubjectId,
         };
 

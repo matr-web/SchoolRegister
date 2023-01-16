@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolRegister.BusinessAccess.Interfaces;
 using SchoolRegister.Models.Dto_s.SubjectDto_s;
 using SchoolRegister.Models.Dto_s.SubjectDto_sl;
+using SchoolRegister.Utility;
 
 namespace SchoolRegister.WebAPI.Controllers;
 
@@ -18,6 +20,7 @@ public class SubjectController : ControllerBase
     }
 
     [HttpGet("GetAll")]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<SubjectDto>>> GetAllAsync()
     {
         var subjectDtos = await _subjectService.GetSubjectsAsync(includeProperties: "Teacher");
@@ -31,6 +34,7 @@ public class SubjectController : ControllerBase
     }
 
     [HttpGet("subjectId")]
+    [Authorize]
     public async Task<ActionResult<SubjectDto>> GetAsync([FromQuery] int subjectId)
     {
         var subjectDto = await _subjectService.GetSubjectByAsync(includeProperties: "Teacher");
@@ -44,6 +48,7 @@ public class SubjectController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = StaticData.role_administrator)]
     public async Task<ActionResult> PostAsync([FromBody] CreateSubjectDto createSubjectDto)
     {
         var subjectDto = await _subjectService.InsertSubjectAsync(createSubjectDto);
@@ -52,6 +57,7 @@ public class SubjectController : ControllerBase
     }
 
     [HttpPut("subjectId")]
+    [Authorize(Roles = StaticData.role_administrator)]
     public async Task<ActionResult> PutAsync([FromQuery] int subjectId, [FromBody] UpdateSubjectDto updateSubjectDto)
     {
         if (subjectId != updateSubjectDto.Id)
@@ -65,6 +71,7 @@ public class SubjectController : ControllerBase
     }
 
     [HttpDelete("subjectId")]
+    [Authorize(Roles = StaticData.role_administrator)]
     public async Task<ActionResult> DeleteAsync([FromQuery] int subjectId)
     {
         var subjectDto = await _subjectService.GetSubjectByAsync(g => g.Id == subjectId);
