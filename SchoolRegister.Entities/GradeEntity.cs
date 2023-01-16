@@ -8,7 +8,7 @@ public class GradeEntity
 
     public virtual GradeValue GradeValue { get; set; }
 
-    public Guid StudentId { get; set; }
+    public Guid UserId { get; set; }
 
     public virtual StudentEntity Student { get; set; }
 

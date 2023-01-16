@@ -21,6 +21,12 @@ public class SchoolRegisterContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        modelBuilder.Entity<UserEntity>()
+        .HasDiscriminator<string>("Discriminator")
+        .HasValue<AdministratorEntity>("Administrator")
+        .HasValue<StudentEntity>("Student")
+        .HasValue<TeacherEntity>("Teacher");
+
         modelBuilder.ApplyConfiguration(new GradeConfiguration());
         modelBuilder.ApplyConfiguration(new GroupConfiguration());
         modelBuilder.ApplyConfiguration(new RoleConfiguration());

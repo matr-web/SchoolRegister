@@ -36,17 +36,17 @@ namespace SchoolRegister.DataAccess.Migrations
                     b.Property<int>("GradeValue")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("StudentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId");
-
                     b.HasIndex("SubjectId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Grades");
                 });
@@ -169,6 +169,13 @@ namespace SchoolRegister.DataAccess.Migrations
                     b.ToTable("SubjectGroup", (string)null);
                 });
 
+            modelBuilder.Entity("SchoolRegister.Entities.AdministratorEntity", b =>
+                {
+                    b.HasBaseType("SchoolRegister.Entities.UserEntity");
+
+                    b.HasDiscriminator().HasValue("Administrator");
+                });
+
             modelBuilder.Entity("SchoolRegister.Entities.StudentEntity", b =>
                 {
                     b.HasBaseType("SchoolRegister.Entities.UserEntity");
@@ -178,7 +185,7 @@ namespace SchoolRegister.DataAccess.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.HasDiscriminator().HasValue("StudentEntity");
+                    b.HasDiscriminator().HasValue("Student");
                 });
 
             modelBuilder.Entity("SchoolRegister.Entities.TeacherEntity", b =>
@@ -188,20 +195,20 @@ namespace SchoolRegister.DataAccess.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("TeacherEntity");
+                    b.HasDiscriminator().HasValue("Teacher");
                 });
 
             modelBuilder.Entity("SchoolRegister.Entities.GradeEntity", b =>
                 {
-                    b.HasOne("SchoolRegister.Entities.StudentEntity", "Student")
-                        .WithMany("Grades")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
                     b.HasOne("SchoolRegister.Entities.SubjectEntity", "Subject")
                         .WithMany("Grades")
                         .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolRegister.Entities.StudentEntity", "Student")
+                        .WithMany("Grades")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 

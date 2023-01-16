@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SchoolRegister.BusinessAccess.Interfaces;
 using SchoolRegister.Models.Dto_s.GradeDto_s;
+using SchoolRegister.Utility;
+using System.Data;
 
 namespace SchoolRegister.WebAPI.Controllers;
 
@@ -16,9 +19,10 @@ public class GradeController : ControllerBase
     }
 
     [HttpGet("GetAll")]
+    [Authorize(Roles = $"{StaticData.role_teacher},{StaticData.role_student}")]
     public async Task<ActionResult<IEnumerable<GradeDto>>> GetAllAsync([FromQuery] Guid studentId)
     {
-        var gradeDtos = await _gradeService.GetGradesAsync(g => g.StudentId == studentId, "Student,Subject");
+        var gradeDtos = await _gradeService.GetGradesAsync(g => g.UserId == studentId, "Student,Subject");
 
         if (gradeDtos == null)
         {
@@ -29,6 +33,7 @@ public class GradeController : ControllerBase
     }
 
     [HttpGet("gradeId")]
+    [Authorize(Roles = $"{StaticData.role_teacher},{StaticData.role_student}")]
     public async Task<ActionResult<GradeDto>> GetAsync([FromQuery] int gradeId)
     {
         var gradeDto = await _gradeService.GetGradeByAsync(g => g.Id == gradeId, "Student,Subject");
@@ -42,6 +47,7 @@ public class GradeController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = StaticData.role_teacher)]
     public async Task<ActionResult> PostAsync([FromBody] CreateGradeDto createGradeDto)
     {
         var gradeDto = await _gradeService.InsertGradeAsync(createGradeDto);
@@ -50,6 +56,7 @@ public class GradeController : ControllerBase
     }
 
     [HttpPut("gradeId")]
+    [Authorize(Roles = StaticData.role_teacher)]
     public async Task<ActionResult> PutAsync([FromQuery] int gradeId, [FromBody] UpdateGradeDto updateGradeDto)
     {
         if (gradeId != updateGradeDto.Id)
@@ -63,6 +70,7 @@ public class GradeController : ControllerBase
     }
 
     [HttpDelete("gradeId")]
+    [Authorize(Roles = StaticData.role_teacher)]
     public async Task<ActionResult> DeleteAsync([FromQuery] int gradeId)
     {
         var gradeDto = await _gradeService.GetGradeByAsync(g => g.Id == gradeId);

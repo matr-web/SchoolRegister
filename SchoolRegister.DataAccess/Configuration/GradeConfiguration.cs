@@ -17,7 +17,7 @@ public class GradeConfiguration : IEntityTypeConfiguration<GradeEntity>
         // Grade/Student configuration.
         builder.HasOne(g => g.Student)
        .WithMany(s => s.Grades)
-       .HasForeignKey(g => g.StudentId)
+       .HasForeignKey(g => g.UserId)
        .OnDelete(DeleteBehavior.ClientCascade);  // If u delete Student, Grades also will be deleted.
     }
 }

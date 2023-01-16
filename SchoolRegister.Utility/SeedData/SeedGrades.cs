@@ -16,7 +16,7 @@ public class SeedGrades
             var gradeOne = new GradeEntity()
             {
                 DateOfIssue = DateTime.Now,
-                StudentId = students.FirstOrDefault().Id,
+                UserId = students.FirstOrDefault().Id,
                 SubjectId = subjects.FirstOrDefault().Id,
                 GradeValue = GradeValue.A_Excellent
             };
@@ -24,7 +24,7 @@ public class SeedGrades
             var gradeTwo = new GradeEntity()
             {
                 DateOfIssue = DateTime.Now,
-                StudentId = students.FirstOrDefault().Id,
+                UserId = students.FirstOrDefault().Id,
                 SubjectId = subjects.FirstOrDefault().Id,
                 GradeValue = GradeValue.B_VeryGood
             };
