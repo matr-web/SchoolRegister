@@ -27,7 +27,7 @@ public class GradeDto
             Id = grade.Id,
             DateOfIssue = grade.DateOfIssue,
             GradeValue = grade.GradeValue,
-            StudentId = grade.StudentId,
+            StudentId = grade.UserId,
             SubjectId = grade.SubjectId,
         };
 
