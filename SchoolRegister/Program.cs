@@ -53,6 +53,17 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddScoped<IPasswordHasher<UserEntity>, PasswordHasher<UserEntity>>();
 
+#region CORS
+// CORS Configuration.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("frontEndClient", builder =>
+    builder.AllowAnyMethod() // Allow any Method.
+    .AllowAnyHeader() // Allow any Header.
+    .WithOrigins("http://localhost:8080")); // Source for which we allow the CORS policy. 
+});
+#endregion
+
 #region Authentication
 // Authentication configuration
 var authenticationSettings = new AuthenticationSettings();
@@ -98,6 +109,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("frontEndClient");
 
 app.UseAuthentication();
 
