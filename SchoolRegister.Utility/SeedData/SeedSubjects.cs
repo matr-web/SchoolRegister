@@ -5,6 +5,7 @@ namespace SchoolRegister.Utility.SeedData;
 
 public class SeedSubjects
 {
+#if DEBUG
     public static void SubjectsSeed(SchoolRegisterContext context)
     {
         var teachers = context.Users.OfType<TeacherEntity>();
@@ -51,4 +52,5 @@ public class SeedSubjects
             context.SaveChanges();
         }
     }
+#endif
 }
