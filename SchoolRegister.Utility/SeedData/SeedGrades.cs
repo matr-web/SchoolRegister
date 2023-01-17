@@ -6,6 +6,7 @@ namespace SchoolRegister.Utility.SeedData;
 
 public class SeedGrades
 {
+#if DEBUG
     public static void GradesSeed(SchoolRegisterContext context)
     {
         var students = context.Students;
@@ -33,4 +34,5 @@ public class SeedGrades
             context.SaveChanges();
         }
     }
+#endif
 }
