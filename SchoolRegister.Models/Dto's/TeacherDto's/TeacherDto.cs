@@ -6,7 +6,7 @@ namespace SchoolRegister.Models.Dto_s.TeacherDto_s;
 
 public class TeacherDto
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     public string FirstName { get; set; }
 

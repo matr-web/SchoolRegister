@@ -6,7 +6,7 @@ public class CreateGradeDto
 {
     public virtual GradeValue GradeValue { get; set; }
 
-    public Guid StudentId { get; set; }
+    public int StudentId { get; set; }
 
     public int SubjectId { get; set; }
 }

@@ -8,7 +8,7 @@ public class SubjectEntity
 
     public string Description { get; set; }
 
-    public Guid? TeacherId { get; set; }
+    public int? TeacherId { get; set; }
 
     public virtual TeacherEntity Teacher { get; set; }
 
