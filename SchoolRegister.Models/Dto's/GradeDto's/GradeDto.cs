@@ -12,7 +12,7 @@ public class GradeDto
 
     public virtual GradeValue GradeValue { get; set; }
 
-    public Guid StudentId { get; set; }
+    public int StudentId { get; set; }
 
     public virtual StudentDto Student { get; set; }
 

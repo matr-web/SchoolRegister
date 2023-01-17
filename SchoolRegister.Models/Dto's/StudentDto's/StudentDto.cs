@@ -7,7 +7,7 @@ namespace SchoolRegister.Models.Dto_s.StudentDto_s;
 
 public class StudentDto
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     public string FirstName { get; set; }
 

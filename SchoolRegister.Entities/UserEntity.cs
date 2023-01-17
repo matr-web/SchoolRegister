@@ -4,7 +4,7 @@ namespace SchoolRegister.Entities;
 
 public class UserEntity
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     public string FirstName { get; set; }
 
