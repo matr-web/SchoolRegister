@@ -12,7 +12,7 @@ using SchoolRegister.DataAccess;
 namespace SchoolRegister.DataAccess.Migrations
 {
     [DbContext(typeof(SchoolRegisterContext))]
-    [Migration("20230117093931_Initial")]
+    [Migration("20230117101549_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -185,7 +185,7 @@ namespace SchoolRegister.DataAccess.Migrations
                 {
                     b.HasBaseType("SchoolRegister.Entities.UserEntity");
 
-                    b.Property<int>("GroupId")
+                    b.Property<int?>("GroupId")
                         .HasColumnType("int");
 
                     b.HasIndex("GroupId");
@@ -263,8 +263,7 @@ namespace SchoolRegister.DataAccess.Migrations
                     b.HasOne("SchoolRegister.Entities.GroupEntity", "Group")
                         .WithMany("Students")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.ClientCascade);
 
                     b.Navigation("Group");
                 });

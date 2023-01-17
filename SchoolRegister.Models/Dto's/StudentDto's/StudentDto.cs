@@ -21,7 +21,7 @@ public class StudentDto
 
     public virtual ICollection<GradeDto> Grades { get; set; }
 
-    public int GroupId { get; set; }
+    public int? GroupId { get; set; }
 
     public virtual GroupDto Group { get; set; }
 
