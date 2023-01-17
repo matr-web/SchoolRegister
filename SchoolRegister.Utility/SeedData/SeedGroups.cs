@@ -5,6 +5,7 @@ namespace SchoolSystem.Utility.SeedData;
 
 public class SeedGroups
 {
+#if DEBUG
     public static void GroupsSeed(SchoolRegisterContext context)
     {
         if (!context.Groups.Any())
@@ -28,4 +29,5 @@ public class SeedGroups
             context.SaveChanges();
         }
     }
+#endif
 }

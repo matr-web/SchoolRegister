@@ -48,6 +48,7 @@ public class SeedUsers
         }
     }
 
+#if DEBUG
     public static void UsersSeed(SchoolRegisterContext context)
     {
         var groups = context.Groups;
@@ -87,4 +88,22 @@ public class SeedUsers
             context.SaveChanges();
         }
     }
+#else
+    public static void DefaultAdminSeed(SchoolRegisterContext context)
+    {
+        var groups = context.Groups;
+
+        if (!context.Users.Any())
+        {
+            var adminOne = new AdministratorEntity
+            {
+                RoleId = 1,
+                FirstName = "Jan",
+                LastName = "Kowalski",
+                Email = "1admin@gmail.com",
+            };
+        }
+    }
+#endif
 }
+
