@@ -24,7 +24,7 @@ public class RegisterUserDto
     [Required]
     public int RoleId { get; set; }
 
-    public int GroupId { get; set; }
+    public int? GroupId { get; set; }
 
-    public string Title { get; set; }
+    public string? Title { get; set; }
 }
