@@ -20,7 +20,7 @@ public class GradeController : ControllerBase
 
     [HttpGet("GetAll")]
     [Authorize(Roles = $"{StaticData.role_teacher},{StaticData.role_student}")]
-    public async Task<ActionResult<IEnumerable<GradeDto>>> GetAllAsync([FromQuery] Guid studentId)
+    public async Task<ActionResult<IEnumerable<GradeDto>>> GetAllAsync([FromQuery] int studentId)
     {
         var gradeDtos = await _gradeService.GetGradesAsync(g => g.UserId == studentId, "Student,Subject");
 

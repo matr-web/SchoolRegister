@@ -39,8 +39,8 @@ namespace SchoolRegister.DataAccess.Migrations
                     b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -99,8 +99,8 @@ namespace SchoolRegister.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("TeacherId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("TeacherId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -111,9 +111,11 @@ namespace SchoolRegister.DataAccess.Migrations
 
             modelBuilder.Entity("SchoolRegister.Entities.UserEntity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Discriminator")
                         .IsRequired()

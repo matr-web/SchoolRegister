@@ -12,7 +12,7 @@ public class SubjectDto
 
     public string Description { get; set; }
 
-    public Guid? TeacherId { get; set; }
+    public int? TeacherId { get; set; }
 
     public virtual TeacherDto Teacher { get; set; }
 

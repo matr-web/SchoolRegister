@@ -41,7 +41,8 @@ namespace SchoolRegister.DataAccess.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -75,7 +76,7 @@ namespace SchoolRegister.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TeacherId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    TeacherId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -95,7 +96,7 @@ namespace SchoolRegister.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateOfIssue = table.Column<DateTime>(type: "datetime2", nullable: false),
                     GradeValue = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     SubjectId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

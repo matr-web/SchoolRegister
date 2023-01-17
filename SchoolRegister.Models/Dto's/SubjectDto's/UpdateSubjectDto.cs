@@ -10,5 +10,5 @@ public class UpdateSubjectDto
 
     public string Description { get; set; }
 
-    public Guid? TeacherId { get; set; }
+    public int? TeacherId { get; set; }
 }
