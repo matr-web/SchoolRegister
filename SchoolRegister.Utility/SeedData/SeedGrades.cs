@@ -9,11 +9,11 @@ public class SeedGrades
 #if DEBUG
     public static void GradesSeed(SchoolRegisterContext context)
     {
-        var students = context.Students;
-        var subjects = context.Subjects;
-
         if (!context.Grades.Any())
         {
+            var students = context.Students;
+            var subjects = context.Subjects;
+
             var gradeOne = new GradeEntity()
             {
                 DateOfIssue = DateTime.Now,
