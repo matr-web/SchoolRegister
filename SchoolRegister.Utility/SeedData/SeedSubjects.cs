@@ -8,10 +8,10 @@ public class SeedSubjects
 #if DEBUG
     public static void SubjectsSeed(SchoolRegisterContext context)
     {
-        var teachers = context.Users.OfType<TeacherEntity>();
-
         if (!context.Subjects.Any())
         {
+            var teachers = context.Users.OfType<TeacherEntity>();
+
             var PIGK = new SubjectEntity()
             {
                 Name = "Programowanie Interaktywnej Grafiki Komputerowej",

@@ -51,10 +51,10 @@ public class SeedUsers
 #if DEBUG
     public static void UsersSeed(SchoolRegisterContext context)
     {
-        var groups = context.Groups;
-
         if (!context.Users.Any())
         {
+            var groups = context.Groups;
+
             var adminOne = new AdministratorEntity
             {
                 RoleId = 1,
@@ -91,10 +91,10 @@ public class SeedUsers
 #else
     public static void DefaultAdminSeed(SchoolRegisterContext context)
     {
-        var groups = context.Groups;
-
         if (!context.Users.Any())
         {
+            var groups = context.Groups;
+
             var adminOne = new AdministratorEntity
             {
                 RoleId = 1,
