@@ -12,7 +12,7 @@ using SchoolRegister.DataAccess;
 namespace SchoolRegister.DataAccess.Migrations
 {
     [DbContext(typeof(SchoolRegisterContext))]
-    [Migration("20230117101549_Initial")]
+    [Migration("20230118010303_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
