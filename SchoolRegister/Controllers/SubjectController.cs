@@ -23,23 +23,23 @@ public class SubjectController : ControllerBase
     [Authorize]
     public async Task<ActionResult<IEnumerable<SubjectDto>>> GetAllAsync()
     {
-        var subjectDtos = await _subjectService.GetSubjectsAsync(includeProperties: "Teacher");
+        var subjectsDtos = await _subjectService.GetSubjectsAsync(includeProperties: "Teacher");
 
-        if (subjectDtos == null)
+        if (subjectsDtos == null)
         {
             return NotFound();
         }
 
-        return Ok(subjectDtos);
+        return Ok(subjectsDtos);
     }
 
-    [HttpGet("subjectId")]
+    [HttpGet("Get")]
     [Authorize]
     public async Task<ActionResult<SubjectDto>> GetAsync([FromQuery] int subjectId)
     {
-        var subjectDto = await _subjectService.GetSubjectByAsync(includeProperties: "Teacher");
+        var subjectDto = await _subjectService.GetSubjectByAsync(s => s.Id == subjectId, includeProperties: "Teacher");
 
-        if (subjectDto == null)
+        if (subjectDto == null || subjectDto.Id != subjectId)
         {
             return NotFound();
         }
@@ -47,7 +47,7 @@ public class SubjectController : ControllerBase
         return Ok(subjectDto);
     }
 
-    [HttpPost]
+    [HttpPost("Post")]
     [Authorize(Roles = StaticData.role_administrator)]
     public async Task<ActionResult> PostAsync([FromBody] CreateSubjectDto createSubjectDto)
     {
@@ -56,9 +56,9 @@ public class SubjectController : ControllerBase
         return Created($"Subject/{subjectDto.Id}", subjectDto);
     }
 
-    [HttpPut("subjectId")]
+    [HttpPut("Put")]
     [Authorize(Roles = StaticData.role_administrator)]
-    public async Task<ActionResult> PutAsync([FromQuery] int subjectId, [FromBody] UpdateSubjectDto updateSubjectDto)
+    public async Task<ActionResult> PutAsync(int subjectId, [FromBody] UpdateSubjectDto updateSubjectDto)
     {
         if (subjectId != updateSubjectDto.Id)
         {
@@ -70,7 +70,7 @@ public class SubjectController : ControllerBase
         return Ok(subjectDto);
     }
 
-    [HttpDelete("subjectId")]
+    [HttpDelete("Delete")]
     [Authorize(Roles = StaticData.role_administrator)]
     public async Task<ActionResult> DeleteAsync([FromQuery] int subjectId)
     {

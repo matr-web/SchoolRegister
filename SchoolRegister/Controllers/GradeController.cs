@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolRegister.BusinessAccess.Interfaces;
 using SchoolRegister.Models.Dto_s.GradeDto_s;
+using SchoolRegister.Models.Dto_s.GroupDto_s;
 using SchoolRegister.Utility;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace SchoolRegister.WebAPI.Controllers;
 
@@ -32,13 +34,13 @@ public class GradeController : ControllerBase
         return Ok(gradeDtos);
     }
 
-    [HttpGet("gradeId")]
+    [HttpGet("Get")]
     [Authorize(Roles = $"{StaticData.role_teacher},{StaticData.role_student}")]
     public async Task<ActionResult<GradeDto>> GetAsync([FromQuery] int gradeId)
     {
         var gradeDto = await _gradeService.GetGradeByAsync(g => g.Id == gradeId, "Student,Subject");
 
-        if (gradeDto == null)
+        if (gradeDto == null || gradeDto.Id != gradeId)
         {
             return NotFound();
         }
@@ -46,7 +48,7 @@ public class GradeController : ControllerBase
         return Ok(gradeDto);
     }
 
-    [HttpPost]
+    [HttpPost("Post")]
     [Authorize(Roles = StaticData.role_teacher)]
     public async Task<ActionResult> PostAsync([FromBody] CreateGradeDto createGradeDto)
     {
@@ -55,7 +57,7 @@ public class GradeController : ControllerBase
         return Created($"Grade/{gradeDto.Id}", gradeDto);
     }
 
-    [HttpPut("gradeId")]
+    [HttpPut("Put")]
     [Authorize(Roles = StaticData.role_teacher)]
     public async Task<ActionResult> PutAsync([FromQuery] int gradeId, [FromBody] UpdateGradeDto updateGradeDto)
     {
@@ -69,7 +71,7 @@ public class GradeController : ControllerBase
         return Ok(gradeDto);
     }
 
-    [HttpDelete("gradeId")]
+    [HttpDelete("Delete")]
     [Authorize(Roles = StaticData.role_teacher)]
     public async Task<ActionResult> DeleteAsync([FromQuery] int gradeId)
     {

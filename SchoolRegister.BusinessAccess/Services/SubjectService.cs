@@ -31,7 +31,7 @@ public class SubjectService : ISubjectService
         return subjectDtosList;
     }
 
-    public async Task<SubjectDto> GetSubjectByAsync(Expression<Func<SubjectEntity, bool>> filterExpression = null, string includeProperties = null)
+    public async Task<SubjectDto> GetSubjectByAsync(Expression<Func<SubjectEntity, bool>> filterExpression, string includeProperties = null)
     {
         var subject = await _unitOfWork.SubjectRepository.GetByAsync(filterExpression, includeProperties);
 
