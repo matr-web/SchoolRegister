@@ -17,17 +17,17 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("Register")]
-    public async Task<ActionResult> RegisterAsync([FromBody] RegisterUserDto createGroupDto)
+    public async Task<ActionResult> RegisterAsync([FromBody] RegisterUserDto registerUserDto)
     {
-        await _userService.RegisterUserAsync(createGroupDto);
+        await _userService.RegisterUserAsync(registerUserDto);
 
         return Ok();
     }
 
     [HttpPost("Login")]
-    public async Task<ActionResult> LoginAsync([FromBody] LoginUserDto loginGroupDto)
+    public async Task<ActionResult> LoginAsync([FromBody] LoginUserDto loginUserDto)
     {
-        var token = await _userService.GenerateToken(loginGroupDto);
+        var token = await _userService.GenerateToken(loginUserDto);
 
         return Ok(token);
     }

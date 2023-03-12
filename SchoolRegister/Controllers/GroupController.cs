@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolRegister.BusinessAccess.Interfaces;
 using SchoolRegister.Models.Dto_s.GroupDto_s;
+using SchoolRegister.Models.Dto_s.SubjectDto_s;
 using SchoolRegister.Utility;
 
 namespace SchoolRegister.WebAPI.Controllers;
@@ -31,13 +32,13 @@ public class GroupController : ControllerBase
         return Ok(groupDtos);
     }
 
-    [HttpGet("groupId")]
+    [HttpGet("Get")]
     [Authorize]
     public async Task<ActionResult<GroupDto>> GetAsync([FromQuery] int groupId)
     {
-        var groupDto = await _groupService.GetGroupByAsync(includeProperties: "Students,Subjects");
+        var groupDto = await _groupService.GetGroupByAsync(g => g.Id == groupId, includeProperties: "Students,Subjects");
 
-        if (groupDto == null)
+        if (groupDto == null || groupDto.Id != groupId)
         {
             return NotFound();
         }
@@ -45,7 +46,7 @@ public class GroupController : ControllerBase
         return Ok(groupDto);
     }
 
-    [HttpPost]
+    [HttpPost("Post")]
     [Authorize(Roles = StaticData.role_administrator)]
     public async Task<ActionResult> PostAsync([FromBody] CreateGroupDto createGroupDto)
     {
@@ -54,7 +55,7 @@ public class GroupController : ControllerBase
         return Created($"Group/{groupDto.Id}", groupDto);
     }
 
-    [HttpPut("groupId")]
+    [HttpPut("Put")]
     [Authorize(Roles = StaticData.role_administrator)]
     public async Task<ActionResult> PutAsync([FromQuery] int groupId, [FromBody] UpdateGroupDto updateGroupDto)
     {
@@ -68,7 +69,7 @@ public class GroupController : ControllerBase
         return Ok(groupDto);
     }
 
-    [HttpDelete("groupId")]
+    [HttpDelete("Delete")]
     [Authorize(Roles = StaticData.role_administrator)]
     public async Task<ActionResult> DeleteAsync([FromQuery] int groupId)
     {
