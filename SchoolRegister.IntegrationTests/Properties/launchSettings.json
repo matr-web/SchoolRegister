@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "SchoolRegister.IntegrationTests": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:55078;http://localhost:55079"
+    }
+  }
+}
